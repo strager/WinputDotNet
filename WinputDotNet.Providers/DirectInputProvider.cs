@@ -91,7 +91,21 @@ namespace WinputDotNet.Providers {
             }
         }
     }
-
+    
+    /// <summary>
+    /// DirectX's DirectInput.
+    /// </summary>
+    /// <remarks>
+    /// <![CDATA[
+    /// Users of this provider MUST add the following attribute to the startup element in the app.config:
+    /// 
+    /// useLegacyV2RuntimeActivationPolicy="true"
+    /// 
+    /// In addition, users MUST add a reference to Microsoft.DirectX.DirectInput.
+    /// 
+    /// (If anyone knows a way around these restrictions, feel free to change the code!)
+    /// ]]>
+    /// </remarks>
     [Export(typeof(IInputProvider))]
     public class DirectInputProvider : IInputProvider {
         public event EventHandler<CommandStateChangedEventArgs> CommandStateChanged;
