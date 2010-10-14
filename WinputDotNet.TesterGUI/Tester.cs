@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using WinputDotNet.Providers;
 
@@ -43,7 +42,7 @@ namespace WinputDotNet.TesterGUI {
 
             this.activeProvider.AttachRecorder(Handle, (inputSequence) => {
                 Log("Got sequence: {0}", inputSequence.GetHumanString());
-                System.Threading.Thread.Sleep(1000);
+
                 Log("Stopping recording");
 
                 this.activeProvider.Detach();
