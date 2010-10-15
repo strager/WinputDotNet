@@ -10,8 +10,9 @@
     }
 
     public interface IInputSequence {
-        // TODO Rename
-        string GetHumanString();
+        string HumanString {
+            get;
+        }
     }
 
     public interface ICommand {

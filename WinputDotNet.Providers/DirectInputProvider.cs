@@ -59,15 +59,17 @@ namespace WinputDotNet.Providers {
             this.inputString = inputString;
         }
 
-        public string GetHumanString() {
-            if (!this.inputString.Contains("|")) {
-                throw new FormatException("Input was in an unrecognized format.");
+        public string HumanString {
+            get {
+                if (!this.inputString.Contains("|")) {
+                    throw new FormatException("Input was in an unrecognized format.");
+                }
+
+                string[] parts = this.inputString.Split('|');
+                Guid deviceGuid = new Guid(parts[0]);
+
+                return GetNiceInputName(parts[1], new Device(deviceGuid));
             }
-
-            string[] parts = this.inputString.Split('|');
-            Guid deviceGuid = new Guid(parts[0]);
-
-            return GetNiceInputName(parts[1], new Device(deviceGuid));
         }
 
         private static string GetNiceInputName(string input, Device device) {
