@@ -188,7 +188,7 @@ namespace WinputDotNet.Providers {
         private void RecordingHandler() {
             IInputSequence input;
 
-            while (this.recordedSequenceQueue.TryDequeue(out input)) {
+            while (this.recordedSequenceQueue != null && this.recordedSequenceQueue.TryDequeue(out input)) {
                 var handler = this.recordingHandler;
 
                 if (handler != null) {
@@ -250,7 +250,11 @@ namespace WinputDotNet.Providers {
             this.inputRunnerThread = null;
 
             this.recordedSequenceQueue.Cancel();
-            this.recordingHandlerThread.Join();
+
+            if (this.recordingHandlerThread != Thread.CurrentThread) {
+                this.recordingHandlerThread.Join();
+            }
+
             this.recordingHandlerThread = null;
             this.recordedSequenceQueue = null;
 
