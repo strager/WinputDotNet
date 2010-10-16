@@ -251,14 +251,16 @@ namespace WinputDotNet.Providers {
             this.inputRunnerThread.Join();
             this.inputRunnerThread = null;
 
-            this.recordedSequenceQueue.Cancel();
+            if (this.recordedSequenceQueue != null) {
+                this.recordedSequenceQueue.Cancel();
 
-            if (this.recordingHandlerThread != Thread.CurrentThread) {
-                this.recordingHandlerThread.Join();
+                if (this.recordingHandlerThread != Thread.CurrentThread) {
+                    this.recordingHandlerThread.Join();
+                }
+
+                this.recordingHandlerThread = null;
+                this.recordedSequenceQueue = null;
             }
-
-            this.recordingHandlerThread = null;
-            this.recordedSequenceQueue = null;
 
             lock (this.syncRoot) {
                 if (this.waits != null) {
