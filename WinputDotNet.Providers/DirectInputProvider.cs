@@ -215,7 +215,7 @@ namespace WinputDotNet.Providers {
                         Key[] boundKeys = new Key[keys.Length];
 
                         for (int i = 0; i < boundKeys.Length; ++i) {
-                            boundKeys[i] = (Key) Enum.Parse(typeof(Key), keys[i]);
+                            boundKeys[i] = (Key) Enum.Parse(typeof(Key), keys[i], true);
                         }
 
                         this.keyboardBindings.Add(boundKeys, binding.Command);
