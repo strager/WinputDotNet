@@ -36,7 +36,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandBinding.cs" />
     <Compile Include="CommandStateChangedEventArgs.cs" />
     <Compile Include="ICommandBinding.cs" />
     <Compile Include="IInputProvider.cs" />

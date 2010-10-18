@@ -51,14 +51,13 @@ namespace WinputDotNet {
     /// <summary>
     /// Provides data for the <see cref="IInputProvider.CommandStateChanged"/> event.
     /// </summary>
-    public class CommandStateChangedEventArgs :
-        EventArgs {
+    public class CommandStateChangedEventArgs : EventArgs {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandStateChangedEventArgs"/> class.
         /// </summary>
         /// <param name="command">The command that's state has changed.</param>
         /// <param name="state">The new state of the <paramref name="command"/>.</param>
-        public CommandStateChangedEventArgs (ICommand command, InputState state) {
+        public CommandStateChangedEventArgs(ICommand command, InputState state) {
             if (state == InputState.Axis) {
                 throw new ArgumentException("State can not be axis without percentage setting", "state");
             }
