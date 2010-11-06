@@ -42,6 +42,7 @@ using System.Threading;
 using Microsoft.DirectX.DirectInput;
 
 namespace WinputDotNet.Providers {
+    [Serializable]
     public class DirectInputSequence : IInputSequence {
         private readonly string inputString;
 
