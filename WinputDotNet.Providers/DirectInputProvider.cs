@@ -206,6 +206,10 @@ namespace WinputDotNet.Providers {
             }
 
             lock (this.syncRoot) {
+                this.mouseBindings.Clear();
+                this.keyboardBindings.Clear();
+                this.joystickBindings.Clear();
+
                 foreach (ICommandBinding binding in bindings) {
                     var inputSequence = (DirectInputSequence) binding.Input;
 
