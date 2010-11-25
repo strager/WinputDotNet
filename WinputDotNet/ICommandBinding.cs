@@ -1,4 +1,6 @@
-﻿namespace WinputDotNet {
+﻿using System;
+
+namespace WinputDotNet {
     public interface ICommandBinding {
         IInputSequence Input {
             get;
@@ -9,7 +11,7 @@
         }
     }
 
-    public interface IInputSequence {
+    public interface IInputSequence : IEquatable<IInputSequence> {
         string HumanString {
             get;
         }

@@ -93,6 +93,16 @@ namespace WinputDotNet.Providers {
                     return r;
             }
         }
+
+        public bool Equals(IInputSequence other) {
+            var otherSequence = other as DirectInputSequence;
+
+            if (otherSequence == null) {
+                return false;
+            }
+
+            return this.inputString == otherSequence.inputString;
+        }
     }
     
     /// <summary>
