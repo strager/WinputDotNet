@@ -41,7 +41,9 @@ namespace WinputDotNet.TesterGUI {
             Log("Starting recording");
 
             this.activeProvider.AttachRecorder(Handle, (inputSequence) => {
-                Log("Got sequence: {0}", inputSequence.GetHumanString());
+                LogRecording(inputSequence);
+
+                Log("Got sequence: {0}", inputSequence.HumanString);
 
                 Log("Stopping recording");
 
@@ -60,6 +62,19 @@ namespace WinputDotNet.TesterGUI {
 
             this.log.AppendText(string.Format("{0}: {1}", DateTime.Now, message));
             this.log.AppendText(Environment.NewLine);
+        }
+
+        private void LogRecording(IInputSequence sequence) {
+            if (InvokeRequired) {
+                Invoke((Action) (() => LogRecording(sequence)));
+
+                return;
+            }
+
+            string message = string.Format("{0}", sequence.HumanString);
+
+            this.recordLog.AppendText(message);
+            this.recordLog.AppendText(Environment.NewLine);
         }
     }
 }
