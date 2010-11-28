@@ -38,6 +38,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.DirectX.DirectInput;
 
@@ -45,6 +46,9 @@ namespace WinputDotNet.Providers {
     [Serializable]
     public class DirectInputSequence : IInputSequence {
         private readonly string inputString;
+
+        private readonly static string[] CommonKeys;
+        private readonly static Regex[] SpecialKeyExpressions;
 
         public string InputString {
             get {
@@ -104,15 +108,8 @@ namespace WinputDotNet.Providers {
                         return mouseButton >= 0 && mouseButton < 3;
 
                     case DeviceType.Keyboard:
-                        // Single-character keys are common
-                        if (remainingData.Length == 1) {
-                            return true;
-                        }
-
-                        // TODO More common keyboard sequences
-                        string[] commonKeys = "GRAVE".Split(',');
-
-                        return commonKeys.Contains(remainingData);
+                        return CommonKeys.Contains(remainingData)
+                            || SpecialKeyExpressions.Any((re) => re.IsMatch(remainingData));
 
                     default:
                         return false;
@@ -149,6 +146,25 @@ namespace WinputDotNet.Providers {
             }
 
             return this.inputString == otherSequence.inputString;
+        }
+
+        static DirectInputSequence() {
+            CommonKeys = (
+                "GRAVE,TAB,CAPSLOCK,NUMLOCK,PAUSE,SCROLL,SYSRQ,ESCAPE," +
+                "NUMPADSLASH,NUMPADSTAR,NUMPADMINUS,ADD,DECIMAL,INSERT," +
+                "HOME,PAGEUP,PAGEDOWN,END,DELETE,BACKSPACE,RIGHTWINDOWS," +
+                "LEFTWINDOWS,MINUS,EQUALS,LEFTBRACKET,RIGHTBRACKET,SEMICOLON," +
+                "APOSTROPHE,COMMA,PERIOD,SLASH,BACKSLASH,ENTER"
+            ).Split(',');
+
+            const RegexOptions opts = RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline;
+
+            SpecialKeyExpressions = new[] {
+                new Regex(@"^[A-Z]$", opts),                            // Letter keys (A, B, X, Y)
+                new Regex(@"^F[0-9]+$", opts),                          // Function keys (F#)
+                new Regex(@"^NUMPAD[0-9]$", opts),                      // Numpad numbers (NUMPAD#)
+                new Regex(@"^((Left|Right)?Shift\+)?D[0-9]+$", opts),   // Number keys (optionally with shift) (D#)
+            };
         }
     }
     
