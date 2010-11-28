@@ -62,14 +62,61 @@ namespace WinputDotNet.Providers {
 
         public string HumanString {
             get {
-                if (!this.inputString.Contains("|")) {
-                    throw new FormatException("Input was in an unrecognized format.");
+                string remainingData;
+                var device = GetInputStringDevice(out remainingData);
+
+                return GetNiceInputName(remainingData, device);
+            }
+        }
+
+        private Device GetInputStringDevice(out string remainingData) {
+            if (!this.inputString.Contains("|")) {
+                throw new FormatException("Input was in an unrecognized format.");
+            }
+
+            string[] parts = this.inputString.Split('|');
+            Guid deviceGuid = new Guid(parts[0]);
+
+            var device = new Device(deviceGuid);
+            remainingData = parts[1];
+
+            return device;
+        }
+
+        public bool IsSystem {
+            get {
+                // TODO
+                return false;
+            }
+        }
+
+        public bool IsCommon {
+            get {
+                string remainingData;
+                var device = GetInputStringDevice(out remainingData);
+
+                switch (device.DeviceInformation.DeviceType) {
+                    case DeviceType.Mouse:
+                        int mouseButton = Int32.Parse(remainingData);
+
+                        // First three mouse buttons are common
+                        // (Left, right, middle)
+                        return mouseButton >= 0 && mouseButton < 3;
+
+                    case DeviceType.Keyboard:
+                        // Single-character keys are common
+                        if (remainingData.Length == 1) {
+                            return true;
+                        }
+
+                        // TODO More common keyboard sequences
+                        string[] commonKeys = "GRAVE".Split(',');
+
+                        return commonKeys.Contains(remainingData);
+
+                    default:
+                        return false;
                 }
-
-                string[] parts = this.inputString.Split('|');
-                Guid deviceGuid = new Guid(parts[0]);
-
-                return GetNiceInputName(parts[1], new Device(deviceGuid));
             }
         }
 
