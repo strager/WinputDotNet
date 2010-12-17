@@ -184,6 +184,9 @@ namespace WinputDotNet.Providers {
     /// </remarks>
     [Export(typeof(IInputProvider))]
     public class DirectInputProvider : IInputProvider {
+        private const CooperativeLevelFlags BackgroundFlags = CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive;
+        private const CooperativeLevelFlags ForegroundFlags = CooperativeLevelFlags.Foreground | CooperativeLevelFlags.Exclusive;
+
         public event EventHandler<CommandStateChangedEventArgs> CommandStateChanged;
 
         public string Name {
@@ -192,7 +195,19 @@ namespace WinputDotNet.Providers {
             }
         }
 
+        public void Attach() {
+            AttachImpl(IntPtr.Zero, BackgroundFlags);
+        }
+
         public void Attach(IntPtr window) {
+            if (window == IntPtr.Zero) {
+                throw new ArgumentException("Window cannot be null", "window");
+            }
+
+            AttachImpl(window, ForegroundFlags);
+        }
+
+        private void AttachImpl(IntPtr window, CooperativeLevelFlags cooperativeLevelFlags) {
             if (this.running) {
                 throw new InvalidOperationException("Already attached");
             }
@@ -207,7 +222,7 @@ namespace WinputDotNet.Providers {
 
                     var d = new Device(di.InstanceGuid);
                     d.Properties.BufferSize = 10;
-                    d.SetCooperativeLevel(window, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
+                    d.SetCooperativeLevel(window, cooperativeLevelFlags);
                     d.SetDataFormat(DeviceDataFormat.Joystick);
                     d.SetEventNotification(reset);
                     d.Acquire();
@@ -221,7 +236,7 @@ namespace WinputDotNet.Providers {
                 this.waits[0] = new AutoResetEvent(false);
                 this.keyboard = new Device(SystemGuid.Keyboard);
                 this.keyboard.Properties.BufferSize = 10;
-                this.keyboard.SetCooperativeLevel(window, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
+                this.keyboard.SetCooperativeLevel(window, cooperativeLevelFlags);
                 this.keyboard.SetDataFormat(DeviceDataFormat.Keyboard);
                 this.keyboard.SetEventNotification(this.waits[0]);
                 this.keyboard.Acquire();
@@ -229,7 +244,7 @@ namespace WinputDotNet.Providers {
                 this.waits[1] = new AutoResetEvent(false);
                 this.mouse = new Device(SystemGuid.Mouse);
                 this.mouse.Properties.BufferSize = 10;
-                this.mouse.SetCooperativeLevel(window, CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive);
+                this.mouse.SetCooperativeLevel(window, cooperativeLevelFlags);
                 this.mouse.SetDataFormat(DeviceDataFormat.Mouse);
                 this.mouse.SetEventNotification(this.waits[1]);
                 this.mouse.Acquire();
@@ -243,7 +258,15 @@ namespace WinputDotNet.Providers {
             }).Start();
         }
 
+        public void AttachRecorder(InputRecorder recorder) {
+            AttachRecorderImpl(IntPtr.Zero, recorder, BackgroundFlags);
+        }
+
         public void AttachRecorder(IntPtr window, InputRecorder recorder) {
+            AttachRecorderImpl(window, recorder, ForegroundFlags);
+        }
+
+        private void AttachRecorderImpl(IntPtr window, InputRecorder recorder, CooperativeLevelFlags cooperativeLevelFlags) {
 			if (this.running) {
 			    throw new InvalidOperationException("Already attached");
 			}
@@ -258,7 +281,7 @@ namespace WinputDotNet.Providers {
             this.recording = true;
             this.recordingHandler = recorder;
 
-            Attach(window);
+            AttachImpl(window, cooperativeLevelFlags);
         }
 
         private void RecordingHandler() {

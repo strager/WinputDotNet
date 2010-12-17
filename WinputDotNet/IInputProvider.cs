@@ -57,7 +57,10 @@ namespace WinputDotNet {
         /// <exception cref="InvalidOperationException">If the input provider is already attached to <paramref name="window"/>.</exception>
         void Attach(IntPtr window);
 
+        void Attach();
+
         void AttachRecorder(IntPtr window, InputRecorder recorder);
+        void AttachRecorder(InputRecorder recorder);
 
         /// <summary>
         /// Sets the bindings to listen for.
