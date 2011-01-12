@@ -40,15 +40,27 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Microsoft.DirectX.DirectInput;
+using SlimDX.DirectInput;
+using Device = SlimDX.DirectInput.Device;
+using DeviceType = SlimDX.DirectInput.DeviceType;
 
 namespace WinputDotNet.Providers {
+    static class Helpers {
+        public static DeviceType GetEffectiveDeviceType(this DeviceInstance deviceInstance) {
+            const int deviceTypeMask = 0xFF;
+
+            return (DeviceType) ((int) deviceInstance.Type & deviceTypeMask);
+        }
+    }
+
     [Serializable]
     public class DirectInputSequence : IInputSequence {
         private readonly string inputString;
 
         private readonly static string[] CommonKeys;
         private readonly static Regex[] SpecialKeyExpressions;
+
+        private readonly static DirectInput DirectInput = new DirectInput();
 
         public string InputString {
             get {
@@ -67,13 +79,13 @@ namespace WinputDotNet.Providers {
         public string HumanString {
             get {
                 string remainingData;
-                var device = GetInputStringDevice(out remainingData);
+                var device = GetInputStringDevice(DirectInput, out remainingData);
 
                 return GetNiceInputName(remainingData, device);
             }
         }
 
-        private Device GetInputStringDevice(out string remainingData) {
+        private Device GetInputStringDevice(DirectInput directInput, out string remainingData) {
             if (!this.inputString.Contains("|")) {
                 throw new FormatException("Input was in an unrecognized format.");
             }
@@ -81,10 +93,9 @@ namespace WinputDotNet.Providers {
             string[] parts = this.inputString.Split('|');
             Guid deviceGuid = new Guid(parts[0]);
 
-            var device = new Device(deviceGuid);
             remainingData = parts[1];
 
-            return device;
+            return new Joystick(directInput, deviceGuid);
         }
 
         public bool IsSystem {
@@ -97,9 +108,9 @@ namespace WinputDotNet.Providers {
         public bool IsCommon {
             get {
                 string remainingData;
-                var device = GetInputStringDevice(out remainingData);
+                var device = GetInputStringDevice(new DirectInput(), out remainingData);
 
-                switch (device.DeviceInformation.DeviceType) {
+                switch (device.Information.GetEffectiveDeviceType()) {
                     case DeviceType.Mouse:
                         int mouseButton = Int32.Parse(remainingData);
 
@@ -118,7 +129,7 @@ namespace WinputDotNet.Providers {
         }
 
         private static string GetNiceInputName(string input, Device device) {
-            switch (device.DeviceInformation.DeviceType) {
+            switch (device.Information.GetEffectiveDeviceType()) {
                 case DeviceType.Keyboard:
                     return input;
 
@@ -128,13 +139,23 @@ namespace WinputDotNet.Providers {
                 default:
                     string[] parts = input.Split(';');
 
-                    string r = device.Properties.ProductName + " " +
-                        device.GetObjectInformation(Int32.Parse(parts[0]), ParameterHow.ByOffset).Name;
-                    if (parts.Length == 2) {
-                        r += parts[1];
+                    string inputName = "";
+
+                    if (device.Properties.ProductName != null) {
+                        inputName = device.Properties.ProductName + " ";
                     }
 
-                    return r;
+                    var deviceObject = device.GetObjects().First((o) => o.Offset == Int32.Parse(parts[0]));
+
+                    if (deviceObject.Name != null) {
+                        inputName += deviceObject.Name;
+                    }
+
+                    if (parts.Length == 2) {
+                        inputName += parts[1];
+                    }
+
+                    return inputName;
             }
         }
 
@@ -150,7 +171,7 @@ namespace WinputDotNet.Providers {
 
         static DirectInputSequence() {
             CommonKeys = (
-                "GRAVE,TAB,CAPSLOCK,NUMLOCK,PAUSE,SCROLL,SYSRQ,ESCAPE," +
+                "GRAVE,TAB,CAPSLOCK,NUMLOCK,PAUSE,SCROLL,PRINTSCREEN,SYSRQ,ESCAPE," +
                 "NUMPADSLASH,NUMPADSTAR,NUMPADMINUS,ADD,DECIMAL,INSERT," +
                 "HOME,PAGEUP,PAGEDOWN,END,DELETE,BACKSPACE,RIGHTWINDOWS," +
                 "LEFTWINDOWS,MINUS,EQUALS,LEFTBRACKET,RIGHTBRACKET,SEMICOLON," +
@@ -167,25 +188,19 @@ namespace WinputDotNet.Providers {
             };
         }
     }
+
+    class InputRange {
+        public float Min { get; set; }
+        public float Max { get; set; }
+    }
     
     /// <summary>
     /// DirectX's DirectInput.
     /// </summary>
-    /// <remarks>
-    /// <![CDATA[
-    /// Users of this provider MUST add the following attribute to the startup element in the app.config:
-    /// 
-    /// useLegacyV2RuntimeActivationPolicy="true"
-    /// 
-    /// In addition, users MUST add a reference to Microsoft.DirectX.DirectInput.
-    /// 
-    /// (If anyone knows a way around these restrictions, feel free to change the code!)
-    /// ]]>
-    /// </remarks>
     [Export(typeof(IInputProvider))]
     public class DirectInputProvider : IInputProvider {
-        private const CooperativeLevelFlags BackgroundFlags = CooperativeLevelFlags.Background | CooperativeLevelFlags.NonExclusive;
-        private const CooperativeLevelFlags ForegroundFlags = CooperativeLevelFlags.Foreground | CooperativeLevelFlags.Exclusive;
+        private const CooperativeLevel BackgroundFlags = CooperativeLevel.Background | CooperativeLevel.Nonexclusive;
+        private const CooperativeLevel ForegroundFlags = CooperativeLevel.Foreground | CooperativeLevel.Exclusive;
 
         public event EventHandler<CommandStateChangedEventArgs> CommandStateChanged;
 
@@ -207,7 +222,7 @@ namespace WinputDotNet.Providers {
             AttachImpl(window, ForegroundFlags);
         }
 
-        private void AttachImpl(IntPtr window, CooperativeLevelFlags cooperativeLevelFlags) {
+        private void AttachImpl(IntPtr window, CooperativeLevel cooperativeLevelFlags) {
             if (this.running) {
                 throw new InvalidOperationException("Already attached");
             }
@@ -217,14 +232,13 @@ namespace WinputDotNet.Providers {
 
             lock (this.syncRoot) {
                 List<AutoResetEvent> resets = new List<AutoResetEvent>();
-                foreach (DeviceInstance di in Manager.GetDevices(DeviceClass.GameControl, EnumDevicesFlags.AttachedOnly)) {
+                foreach (DeviceInstance di in DirectInput.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly)) {
                     AutoResetEvent reset = new AutoResetEvent(false);
 
-                    var d = new Device(di.InstanceGuid);
+                    var d = new Joystick(DirectInput, di.InstanceGuid);
                     d.Properties.BufferSize = 10;
                     d.SetCooperativeLevel(window, cooperativeLevelFlags);
-                    d.SetDataFormat(DeviceDataFormat.Joystick);
-                    d.SetEventNotification(reset);
+                    d.SetNotification(reset);
                     d.Acquire();
 
                     resets.Add(reset);
@@ -234,22 +248,28 @@ namespace WinputDotNet.Providers {
 
                 this.waits = new AutoResetEvent[this.joysticks.Count + 2];
                 this.waits[0] = new AutoResetEvent(false);
-                this.keyboard = new Device(SystemGuid.Keyboard);
+                this.keyboard = new Keyboard(DirectInput);
                 this.keyboard.Properties.BufferSize = 10;
                 this.keyboard.SetCooperativeLevel(window, cooperativeLevelFlags);
-                this.keyboard.SetDataFormat(DeviceDataFormat.Keyboard);
-                this.keyboard.SetEventNotification(this.waits[0]);
+                this.keyboard.SetNotification(this.waits[0]);
                 this.keyboard.Acquire();
 
                 this.waits[1] = new AutoResetEvent(false);
-                this.mouse = new Device(SystemGuid.Mouse);
+                this.mouse = new Mouse(DirectInput);
                 this.mouse.Properties.BufferSize = 10;
                 this.mouse.SetCooperativeLevel(window, cooperativeLevelFlags);
-                this.mouse.SetDataFormat(DeviceDataFormat.Mouse);
-                this.mouse.SetEventNotification(this.waits[1]);
+                this.mouse.SetNotification(this.waits[1]);
                 this.mouse.Acquire();
 
                 resets.CopyTo(this.waits, 2);
+
+                this.mouseBindings.Clear();
+                this.keyboardBindings.Clear();
+                this.joystickBindings.Clear();
+
+                foreach (var binding in this.allBindings) {
+                    ParseBinding(binding.Key, binding.Value);
+                }
             }
 
             (this.inputRunnerThread = new Thread(InputRunner) {
@@ -266,7 +286,7 @@ namespace WinputDotNet.Providers {
             AttachRecorderImpl(window, recorder, ForegroundFlags);
         }
 
-        private void AttachRecorderImpl(IntPtr window, InputRecorder recorder, CooperativeLevelFlags cooperativeLevelFlags) {
+        private void AttachRecorderImpl(IntPtr window, InputRecorder recorder, CooperativeLevel cooperativeLevelFlags) {
 			if (this.running) {
 			    throw new InvalidOperationException("Already attached");
 			}
@@ -302,42 +322,68 @@ namespace WinputDotNet.Providers {
             }
 
             lock (this.syncRoot) {
-                this.mouseBindings.Clear();
-                this.keyboardBindings.Clear();
-                this.joystickBindings.Clear();
+                this.allBindings.Clear();
 
                 foreach (ICommandBinding binding in bindings) {
-                    var inputSequence = (DirectInputSequence) binding.Input;
-
-                    string[] parts = inputSequence.InputString.Split('|');
-                    Guid deviceGuid = new Guid(parts[0]);
-                    if (deviceGuid == SystemGuid.Keyboard) {
-                        string[] keys = parts[1].Split('+');
-                        Key[] boundKeys = new Key[keys.Length];
-
-                        for (int i = 0; i < boundKeys.Length; ++i) {
-                            boundKeys[i] = (Key) Enum.Parse(typeof(Key), keys[i], true);
-                        }
-
-                        this.keyboardBindings.Add(boundKeys, binding.Command);
-                    } else if (deviceGuid == SystemGuid.Mouse) {
-                        int button;
-                        if (!Int32.TryParse(parts[1], out button)) {
-                            continue;
-                        }
-
-                        this.mouseBindings.Add(button, binding.Command);
-                    } else {
-                        Dictionary<int, ICommand> jbindings;
-                        if (!this.joystickBindings.TryGetValue(deviceGuid, out jbindings)) {
-                            this.joystickBindings[deviceGuid] = jbindings = new Dictionary<int, ICommand>();
-                        }
-
-                        string[] bindingParts = parts[1].Split(';');
-                        jbindings.Add(Int32.Parse(bindingParts[0]), binding.Command);
+                    if (binding.Input == null) {
+                        throw new ArgumentException("Null input sequence in bindings collection", "bindings");
                     }
+
+                    var inputSequence = binding.Input as DirectInputSequence;
+
+                    if (inputSequence == null) {
+                        throw new ArgumentException(string.Format("Unknown input sequence of type '{0}'", binding.Input.GetType()), "bindings");
+                    }
+
+                    this.allBindings[inputSequence] = binding.Command;
                 }
             }
+        }
+
+        private void ParseBinding(DirectInputSequence inputSequence, ICommand command) {
+            string[] parts = inputSequence.InputString.Split('|');
+            Guid deviceGuid = new Guid(parts[0]);
+            if (deviceGuid == this.keyboard.Information.InstanceGuid) {
+                string[] keys = parts[1].Split('+');
+                Key[] boundKeys = new Key[keys.Length];
+
+                for (int i = 0; i < boundKeys.Length; ++i) {
+                    boundKeys[i] = GetKeyFromName(keys[i]);
+                }
+
+                this.keyboardBindings.Add(boundKeys, command);
+            } else if (deviceGuid == this.mouse.Information.InstanceGuid) {
+                int button;
+                if (!Int32.TryParse(parts[1], out button)) {
+                    return;
+                }
+
+                this.mouseBindings.Add(button, command);
+            } else {
+                Dictionary<int, ICommand> jbindings;
+                if (!this.joystickBindings.TryGetValue(deviceGuid, out jbindings)) {
+                    this.joystickBindings[deviceGuid] = jbindings = new Dictionary<int, ICommand>();
+                }
+
+                string[] bindingParts = parts[1].Split(';');
+                jbindings.Add(Int32.Parse(bindingParts[0]), command);
+            }
+        }
+
+        private static Key GetKeyFromName(string keyName) {
+            // Backwards compatibility
+            switch (keyName.ToUpperInvariant()) {
+                case "SYSRQ":
+                    return Key.PrintScreen;
+
+                case "LEFTMENU":
+                    return Key.LeftAlt;
+
+                case "RIGHTMENU":
+                    return Key.RightAlt;
+            }
+
+            return (Key) Enum.Parse(typeof(Key), keyName, true);
         }
 
         public void Detach() {
@@ -398,8 +444,10 @@ namespace WinputDotNet.Providers {
         private bool running;
         private bool recording;
 
-        private readonly Dictionary<Guid, Device> joysticks = new Dictionary<Guid, Device>();
+        private readonly Dictionary<Guid, Joystick> joysticks = new Dictionary<Guid, Joystick>();
         private readonly Dictionary<int, Guid> joystickIndexes = new Dictionary<int, Guid>();
+
+        private readonly Dictionary<DirectInputSequence, ICommand> allBindings = new Dictionary<DirectInputSequence, ICommand>();
         private readonly Dictionary<Guid, Dictionary<int, ICommand>> joystickBindings = new Dictionary<Guid, Dictionary<int, ICommand>>();
         private readonly Dictionary<Key[], ICommand> keyboardBindings = new Dictionary<Key[], ICommand>();
         private readonly Dictionary<int, ICommand> mouseBindings = new Dictionary<int, ICommand>();
@@ -408,14 +456,15 @@ namespace WinputDotNet.Providers {
 
         private AutoResetEvent[] waits;
 
-        private Device keyboard;
-        private Device mouse;
+        private Keyboard keyboard;
+        private Mouse mouse;
 
         private Thread inputRunnerThread;
 
         private InputRecorder recordingHandler;
         private Thread recordingHandlerThread;
         private BlockingQueue<IInputSequence> recordedSequenceQueue;
+        private readonly static DirectInput DirectInput = new DirectInput();
 
         private void OnInputStateChanged(CommandStateChangedEventArgs e) {
             EventHandler<CommandStateChangedEventArgs> handler = CommandStateChanged;
@@ -449,7 +498,7 @@ namespace WinputDotNet.Providers {
                     objectRanges.Add(d, new Dictionary<int, InputRange>());
                     buttons.Add(d, new HashSet<int>());
 
-                    foreach (DeviceObjectInstance o in d.GetObjects(DeviceObjectTypeFlags.Button)) {
+                    foreach (DeviceObjectInstance o in d.GetObjects(ObjectDeviceType.Button)) {
                         buttons[d].Add(o.Offset);
                     }
                 }
@@ -464,13 +513,13 @@ namespace WinputDotNet.Providers {
                     switch (waited) {
                         case 0: // Keyboard
                         {
-                            KeyboardState state = this.keyboard.GetCurrentKeyboardState();
+                            KeyboardState state = this.keyboard.GetCurrentState();
 
                             if (!this.recording && this.keyboardBindings != null) {
                                 foreach (var kvp in this.keyboardBindings) {
                                     int match = 0;
                                     for (int i = 0; i < kvp.Key.Length; ++i) {
-                                        if (state[kvp.Key[i]]) {
+                                        if (state.IsPressed(kvp.Key[i])) {
                                             match++;
                                         }
                                     }
@@ -488,16 +537,16 @@ namespace WinputDotNet.Providers {
                                     }
                                 }
                             } else {
-                                string recording = SystemGuid.Keyboard + "|";
+                                string recording = this.keyboard.Information.InstanceGuid + "|";
                                 for (int i = 0; i < modifierKeyValues.Length; ++i) {
-                                    if (state[modifierKeyValues[i]]) {
+                                    if (state.IsPressed(modifierKeyValues[i])) {
                                         recording += modifierKeyValues[i] + "+";
                                     }
                                 }
 
                                 bool nonModifier = false;
                                 for (int i = 0; i < keyValues.Length; ++i) {
-                                    if (!state[keyValues[i]]) {
+                                    if (!state.IsPressed(keyValues[i])) {
                                         continue;
                                     }
 
@@ -520,7 +569,7 @@ namespace WinputDotNet.Providers {
                                 continue;
                             }
 
-                            byte[] state = this.mouse.CurrentMouseState.GetMouseButtons();
+                            bool[] state = this.mouse.GetCurrentState().GetButtons();
 
                             if (!this.recording) {
                                 for (int i = 0; i < state.Length; ++i) {
@@ -529,7 +578,7 @@ namespace WinputDotNet.Providers {
                                         continue;
                                     }
 
-                                    bool newState = (state[i] != 0);
+                                    bool newState = state[i];
                                     bool currentState;
                                     if (mousebindingStates.TryGetValue(i, out currentState)) {
                                         if (currentState != newState) {
@@ -543,11 +592,11 @@ namespace WinputDotNet.Providers {
                                 }
                             } else {
                                 for (int i = 0; i < state.Length; ++i) {
-                                    if (state[i] == 0) {
+                                    if (state[i] == false) {
                                         continue;
                                     }
 
-                                    OnNewRecording(new DirectInputSequence(SystemGuid.Mouse + "|" + i));
+                                    OnNewRecording(new DirectInputSequence(this.mouse.Information.InstanceGuid + "|" + i));
                                     break;
                                 }
                             }
@@ -560,18 +609,20 @@ namespace WinputDotNet.Providers {
                                 continue;
                             }
 
+                            // TODO Joystick support
+                            /*
                             var d = this.joysticks[this.joystickIndexes[waited]];
                             var currentButtons = buttons[d];
                             var currentInitials = objectInitial[d];
                             var currentRanges = objectRanges[d];
 
-                            BufferedDataCollection buffer = d.GetBufferedData();
+                            IList<JoystickState> buffer = d.GetBufferedData();
                             if (buffer == null) {
                                 continue;
                             }
 
                             for (int i = 0; i < buffer.Count; i++) {
-                                BufferedData bd = buffer[i];
+                                JoystickState bd = buffer[i];
 
                                 if (this.recording) {
                                     int initial;
@@ -614,6 +665,8 @@ namespace WinputDotNet.Providers {
                                     }
                                 }
                             }
+
+                            */
 
                             break;
                     }
