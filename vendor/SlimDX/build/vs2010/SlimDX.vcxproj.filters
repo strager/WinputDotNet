@@ -1,0 +1,617 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{37768987-11cb-4026-a388-ea4936321fea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Data">
+      <UniqueIdentifier>{3cd41058-453a-419d-b7dc-6698d8cbcbea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Performance">
+      <UniqueIdentifier>{f7faa328-85b2-4c79-93a0-28234facf6d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput">
+      <UniqueIdentifier>{6694604c-f8d0-4aff-a861-b3c27b1e7a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Device">
+      <UniqueIdentifier>{f2ccdc5f-eacb-49bb-93ca-5fdf5806495a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Exceptions">
+      <UniqueIdentifier>{abc6ebd0-3bf0-474e-a2a9-bea276b979e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Properties">
+      <UniqueIdentifier>{9ef81ff7-6ec8-402a-aaa4-5c4a128c9cf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Attributes">
+      <UniqueIdentifier>{d607ed1d-0161-493e-ae1b-b7837e4e62d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\State">
+      <UniqueIdentifier>{921d0a04-67c2-46e0-8067-6187af63b690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\DeviceConstants">
+      <UniqueIdentifier>{b952ec8a-d06f-4b8a-a3bb-c973e0819245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\DeviceInfo">
+      <UniqueIdentifier>{652542e4-ff2e-4b34-bb0c-869082e78732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\ActionMapping">
+      <UniqueIdentifier>{00a284fc-daaf-4d7c-8419-d1bfdd4fd379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Effect">
+      <UniqueIdentifier>{48fbc218-4a8a-418e-9c0f-5bbe344f481b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Effect\TypeSpecificParameters">
+      <UniqueIdentifier>{607458f0-9ad6-4795-b5ca-088717f303bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Effect\Forces">
+      <UniqueIdentifier>{930ba2ac-ba65-401c-8433-fce9b981ed40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\Effect\Conditions">
+      <UniqueIdentifier>{eddd92c6-fb78-4019-a9da-cb16a3e7e3e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{acfb6ae1-2700-4b84-8a8d-3784a0b6e675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Bounding Volumes">
+      <UniqueIdentifier>{4e8a90de-8d2c-492e-923a-d2f3cd4f4b4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Color">
+      <UniqueIdentifier>{e2814615-3496-414d-9bd7-c11d210be7f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Vector">
+      <UniqueIdentifier>{c13bbc56-855d-46f4-8b87-7cb8c04d2060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Matrix">
+      <UniqueIdentifier>{8dbb2878-ee46-46c1-acca-7d56daca36da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Quaternion">
+      <UniqueIdentifier>{f21445bc-db48-460f-945a-c78a55c554ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Ray">
+      <UniqueIdentifier>{0474200c-ddc6-4c9c-b379-b20ffa5b62eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Plane">
+      <UniqueIdentifier>{c97a0f0c-d717-4f76-bfa7-911bfc7809ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Rational">
+      <UniqueIdentifier>{c0c50ccb-bef2-4eb8-ac60-125bf416df97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Half">
+      <UniqueIdentifier>{39fc09f7-6130-452c-a699-272b546f5941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Design">
+      <UniqueIdentifier>{e9fd3d11-2054-47ce-807f-f69f047d4a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Multimedia">
+      <UniqueIdentifier>{8028fbbc-9cd1-48ba-b1fa-1bb4871fb1cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Multimedia\WaveFormat">
+      <UniqueIdentifier>{138f6ca2-49f4-4803-8f50-bf0a5cb8b3de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Multimedia\WaveStream">
+      <UniqueIdentifier>{ce53371e-f802-49eb-a138-56ab4b3f8bdf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\ComObject.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\CompilationException.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Configuration.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ObjectTable.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Result.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\SlimDXException.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Utilities.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\DataBox.cpp">
+      <Filter>Base\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\DataRectangle.cpp">
+      <Filter>Base\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\DataStream.cpp">
+      <Filter>Base\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Performance.cpp">
+      <Filter>Base\Performance</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DirectInput.cpp">
+      <Filter>DirectInput</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\ResultCodeDI.cpp">
+      <Filter>DirectInput</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\CallbacksDI.cpp">
+      <Filter>DirectInput\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\CustomDevice.cpp">
+      <Filter>DirectInput\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DeviceDI.cpp">
+      <Filter>DirectInput\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\Joystick.cpp">
+      <Filter>DirectInput\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\Keyboard.cpp">
+      <Filter>DirectInput\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\Mouse.cpp">
+      <Filter>DirectInput\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DirectInputException.cpp">
+      <Filter>DirectInput\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DirectInputNotFoundException.cpp">
+      <Filter>DirectInput\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DeviceProperties.cpp">
+      <Filter>DirectInput\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\InputRange.cpp">
+      <Filter>DirectInput\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\ObjectProperties.cpp">
+      <Filter>DirectInput\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\JoystickState.cpp">
+      <Filter>DirectInput\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\KeyboardState.cpp">
+      <Filter>DirectInput\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\MouseState.cpp">
+      <Filter>DirectInput\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DeviceConstantConverter.cpp">
+      <Filter>DirectInput\DeviceConstants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\CapabilitiesDI.cpp">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DeviceImage.cpp">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DeviceImageHeader.cpp">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DeviceInstance.cpp">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\DeviceObjectInstance.cpp">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\ObjectData.cpp">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\ActionMappingConstants.cpp">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\EffectDI.cpp">
+      <Filter>DirectInput\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\EffectFile.cpp">
+      <Filter>DirectInput\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\EffectInfo.cpp">
+      <Filter>DirectInput\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\EffectParameters.cpp">
+      <Filter>DirectInput\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\Envelope.cpp">
+      <Filter>DirectInput\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\TypeSpecificParameters.cpp">
+      <Filter>DirectInput\Effect\TypeSpecificParameters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\ConstantForce.cpp">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\CustomForce.cpp">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\PeriodicForce.cpp">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\RampForce.cpp">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\Condition.cpp">
+      <Filter>DirectInput\Effect\Conditions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\directinput\ConditionSet.cpp">
+      <Filter>DirectInput\Effect\Conditions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\BoundingBox.cpp">
+      <Filter>Math\Bounding Volumes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\BoundingSphere.cpp">
+      <Filter>Math\Bounding Volumes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Color3.cpp">
+      <Filter>Math\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Color4.cpp">
+      <Filter>Math\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Vector2.cpp">
+      <Filter>Math\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Vector3.cpp">
+      <Filter>Math\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Vector4.cpp">
+      <Filter>Math\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Matrix.cpp">
+      <Filter>Math\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Quaternion.cpp">
+      <Filter>Math\Quaternion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Ray.cpp">
+      <Filter>Math\Ray</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Plane.cpp">
+      <Filter>Math\Plane</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Rational.cpp">
+      <Filter>Math\Rational</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Half.cpp">
+      <Filter>Math\Half</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Half2.cpp">
+      <Filter>Math\Half</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Half3.cpp">
+      <Filter>Math\Half</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\Half4.cpp">
+      <Filter>Math\Half</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\BoundingBoxConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\BoundingSphereConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Color3Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Color4Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\FieldPropertyDescriptor.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Half2Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Half3Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Half4Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\HalfConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\MatrixConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\PlaneConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\QuaternionConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\RationalConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\RayConverter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Vector2Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Vector3Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\design\Vector4Converter.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multimedia\WaveFormat.cpp">
+      <Filter>Multimedia\WaveFormat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multimedia\WaveFormatExtensible.cpp">
+      <Filter>Multimedia\WaveFormat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\multimedia\WaveStream.cpp">
+      <Filter>Multimedia\WaveStream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\AssemblyInfo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\auto_array.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CollectionShim.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ComObject.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ComObjectMacros.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CompilationException.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Configuration.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Enums.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\InternalHelpers.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ObjectTable.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Result.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\SlimDXException.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stack_array.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Utilities.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\VersionConfig.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\DataBox.h">
+      <Filter>Base\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\DataRectangle.h">
+      <Filter>Base\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\DataStream.h">
+      <Filter>Base\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Performance.h">
+      <Filter>Base\Performance</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DirectInput.h">
+      <Filter>DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\Enums.h">
+      <Filter>DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\Guids.h">
+      <Filter>DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ResultCodeDI.h">
+      <Filter>DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\CallbacksDI.h">
+      <Filter>DirectInput\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\CustomDevice.h">
+      <Filter>DirectInput\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceDI.h">
+      <Filter>DirectInput\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\Joystick.h">
+      <Filter>DirectInput\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\Keyboard.h">
+      <Filter>DirectInput\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\Mouse.h">
+      <Filter>DirectInput\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DirectInputException.h">
+      <Filter>DirectInput\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DirectInputNotFoundException.h">
+      <Filter>DirectInput\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceProperties.h">
+      <Filter>DirectInput\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\InputRange.h">
+      <Filter>DirectInput\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ObjectProperties.h">
+      <Filter>DirectInput\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DataFormatAttribute.h">
+      <Filter>DirectInput\Attributes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DataObjectAttribute.h">
+      <Filter>DirectInput\Attributes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\JoystickState.h">
+      <Filter>DirectInput\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\KeyboardState.h">
+      <Filter>DirectInput\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\MouseState.h">
+      <Filter>DirectInput\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\AnyControl.h">
+      <Filter>DirectInput\DeviceConstants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceConstantConverter.h">
+      <Filter>DirectInput\DeviceConstants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\JoystickObjects.h">
+      <Filter>DirectInput\DeviceConstants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\CapabilitiesDI.h">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceImage.h">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceImageHeader.h">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceInstance.h">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceObjectInstance.h">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DeviceSubType.h">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ObjectData.h">
+      <Filter>DirectInput\DeviceInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ActionGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ArcadeGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\CADGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ControlGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\DrivingGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\FlightGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\SportsGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\StrategyGenres.h">
+      <Filter>DirectInput\ActionMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\EffectDI.h">
+      <Filter>DirectInput\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\EffectFile.h">
+      <Filter>DirectInput\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\EffectInfo.h">
+      <Filter>DirectInput\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\EffectParameters.h">
+      <Filter>DirectInput\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\Envelope.h">
+      <Filter>DirectInput\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\TypeSpecificParameters.h">
+      <Filter>DirectInput\Effect\TypeSpecificParameters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ConstantForce.h">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\CustomForce.h">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\PeriodicForce.h">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\RampForce.h">
+      <Filter>DirectInput\Effect\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\Condition.h">
+      <Filter>DirectInput\Effect\Conditions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\directinput\ConditionSet.h">
+      <Filter>DirectInput\Effect\Conditions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\BoundingBoxConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\BoundingSphereConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Color3Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Color4Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\FieldPropertyDescriptor.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Half2Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Half3Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Half4Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\HalfConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\MatrixConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\PlaneConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\QuaternionConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\RationalConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\RayConverter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Vector2Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Vector3Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\design\Vector4Converter.h">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multimedia\Enums.h">
+      <Filter>Multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multimedia\WaveFormat.h">
+      <Filter>Multimedia\WaveFormat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multimedia\WaveFormatExtensible.h">
+      <Filter>Multimedia\WaveFormat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\multimedia\WaveStream.h">
+      <Filter>Multimedia\WaveStream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stdafx.h" />
+  </ItemGroup>
+</Project>

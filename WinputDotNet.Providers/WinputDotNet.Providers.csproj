@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SlimDX, Version=4.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\vendor\SlimDX\SlimDX.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -47,6 +43,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\vendor\SlimDX\build\vs2010\SlimDX.vcxproj">
+      <Project>{8ECCE443-0440-40F4-A94C-F02E027282C3}</Project>
+      <Name>SlimDX</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinputDotNet\WinputDotNet.csproj">
       <Project>{58A26DE2-2BAB-4E99-8AD3-B6D8F56747AB}</Project>
       <Name>WinputDotNet</Name>

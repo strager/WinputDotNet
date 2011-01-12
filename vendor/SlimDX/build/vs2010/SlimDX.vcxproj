@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Public|Win32">
+      <Configuration>Public</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Public|x64">
+      <Configuration>Public</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8ECCE443-0440-40F4-A94C-F02E027282C3}</ProjectGuid>
+    <RootNamespace>SlimDX</RootNamespace>
+    <Keyword>ManagedCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Public|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Public|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Public|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Public|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)x86\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)x86\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)x86\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)x86\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Public|Win32'">$(ProjectDir)x86\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Public|Win32'">$(ProjectDir)x86\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Public|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Public|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Public|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Public|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Public|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Public|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\external\;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;D3D_DEBUG_INFO;WINVER=0x501;_WIN32_WINNT=0x501;DIRECTINPUT_VERSION=0x0800;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;gdi32.lib;dxguid.lib;d3d9.lib;d3dx9.lib;dxgi.lib;d3d10.lib;d3dx10.lib;d3d10_1.lib;dinput8.lib;xinput.lib;dxerr.lib;ole32.lib;x3daudio.lib;xapobase.lib;winmm.lib;dsound.lib;d3dcompiler.lib;d3d11.lib;d3dx11.lib;d2d1.lib;dwrite.lib;d3dcsx.lib;advapi32.lib</AdditionalDependencies>
+      <Version>0.0.0.0</Version>
+      <AdditionalLibraryDirectories>$(OutDir);$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d3d9.dll;d3dx9_43.dll;d3dx10_43.dll;d3dx11_43.dll;d3dcompiler_43.dll;d3dcsx_43.dll;d3d10.dll;d3d10_1.dll;d3d11.dll;d2d1.dll;dwrite.dll;dxgi.dll;dinput8.dll;x3daudio1_7.dll;xinput1_3.dll;dsound.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <KeyFile>
+      </KeyFile>
+      <KeyContainer>
+      </KeyContainer>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\external\;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;D3D_DEBUG_INFO;WINVER=0x501;_WIN32_WINNT=0x501;DIRECTINPUT_VERSION=0x0800;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;gdi32.lib;dxguid.lib;d3d9.lib;d3dx9.lib;dxgi.lib;d3d10.lib;d3dx10.lib;d3d10_1.lib;dinput8.lib;xinput.lib;dxerr.lib;ole32.lib;x3daudio.lib;xapobase.lib;winmm.lib;dsound.lib;d3dcompiler.lib;d3d11.lib;d3dx11.lib;d2d1.lib;dwrite.lib;d3dcsx.lib;advapi32.lib</AdditionalDependencies>
+      <Version>0.0.0.0</Version>
+      <AdditionalLibraryDirectories>$(OutDir);$(DXSDK_DIR)Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d3d9.dll;d3dx9_43.dll;d3dx10_43.dll;d3dx11_43.dll;d3dcompiler_43.dll;d3dcsx_43.dll;d3d10.dll;d3d10_1.dll;d3d11.dll;d2d1.dll;dwrite.dll;dxgi.dll;dinput8.dll;x3daudio1_7.dll;xinput1_3.dll;dsound.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <KeyFile>
+      </KeyFile>
+      <KeyContainer>
+      </KeyContainer>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\external\;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;D3D_DEBUG_INFO;WINVER=0x501;_WIN32_WINNT=0x501;DIRECTINPUT_VERSION=0x0800;XMLDOCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <XMLDocumentationFileName>$(IntDir)</XMLDocumentationFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;gdi32.lib;dxguid.lib;d3d9.lib;d3dx9.lib;dxgi.lib;d3d10.lib;d3dx10.lib;d3d10_1.lib;dinput8.lib;xinput.lib;dxerr.lib;ole32.lib;x3daudio.lib;xapobase.lib;winmm.lib;dsound.lib;d3dcompiler.lib;d3d11.lib;d3dx11.lib;d2d1.lib;dwrite.lib;d3dcsx.lib;advapi32.lib</AdditionalDependencies>
+      <Version>0.0.0.0</Version>
+      <AdditionalLibraryDirectories>$(OutDir);$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d3d9.dll;d3dx9_43.dll;d3dx10_43.dll;d3dx11_43.dll;d3dcompiler_43.dll;d3dcsx_43.dll;d3d10.dll;d3d10_1.dll;d3d11.dll;d2d1.dll;dwrite.dll;dxgi.dll;dinput8.dll;x3daudio1_7.dll;xinput1_3.dll;dsound.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <KeyFile>
+      </KeyFile>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\external\;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;D3D_DEBUG_INFO;WINVER=0x501;_WIN32_WINNT=0x501;DIRECTINPUT_VERSION=0x0800;XMLDOCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <XMLDocumentationFileName>$(IntDir)</XMLDocumentationFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;gdi32.lib;dxguid.lib;d3d9.lib;d3dx9.lib;dxgi.lib;d3d10.lib;d3dx10.lib;d3d10_1.lib;dinput8.lib;xinput.lib;dxerr.lib;ole32.lib;x3daudio.lib;xapobase.lib;winmm.lib;dsound.lib;d3dcompiler.lib;d3d11.lib;d3dx11.lib;d2d1.lib;dwrite.lib;d3dcsx.lib;advapi32.lib</AdditionalDependencies>
+      <Version>0.0.0.0</Version>
+      <AdditionalLibraryDirectories>$(OutDir);$(DXSDK_DIR)Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d3d9.dll;d3dx9_43.dll;d3dx10_43.dll;d3dx11_43.dll;d3dcompiler_43.dll;d3dcsx_43.dll;d3d10.dll;d3d10_1.dll;d3d11.dll;d2d1.dll;dwrite.dll;dxgi.dll;dinput8.dll;x3daudio1_7.dll;xinput1_3.dll;dsound.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <KeyFile>
+      </KeyFile>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Public|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\external\;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;D3D_DEBUG_INFO;WINVER=0x501;_WIN32_WINNT=0x501;DIRECTINPUT_VERSION=0x0800;XMLDOCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;gdi32.lib;dxguid.lib;d3d9.lib;d3dx9.lib;dxgi.lib;d3d10.lib;d3dx10.lib;d3d10_1.lib;dinput8.lib;xinput.lib;dxerr.lib;ole32.lib;x3daudio.lib;xapobase.lib;winmm.lib;dsound.lib;d3dcompiler.lib;d3d11.lib;d3dx11.lib;d2d1.lib;dwrite.lib;d3dcsx.lib;advapi32.lib</AdditionalDependencies>
+      <Version>4.0.10.43</Version>
+      <AdditionalLibraryDirectories>$(OutDir);$(DXSDK_DIR)Lib\x86;$(OutDir)..\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d3d9.dll;d3dx9_43.dll;d3dx10_43.dll;d3dx11_43.dll;d3dcompiler_43.dll;d3dcsx_43.dll;d3d10.dll;d3d10_1.dll;d3d11.dll;d2d1.dll;dwrite.dll;dxgi.dll;dinput8.dll;x3daudio1_7.dll;xinput1_3.dll;dsound.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <KeyFile>D:\slimdxKey.snk</KeyFile>
+      <DelaySign>false</DelaySign>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>sn -R $(TargetPath) D:\slimdxKey.snk</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Public|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\external\;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;D3D_DEBUG_INFO;WINVER=0x501;_WIN32_WINNT=0x501;DIRECTINPUT_VERSION=0x0800;XMLDOCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;gdi32.lib;dxguid.lib;d3d9.lib;d3dx9.lib;dxgi.lib;d3d10.lib;d3dx10.lib;d3d10_1.lib;dinput8.lib;xinput.lib;dxerr.lib;ole32.lib;x3daudio.lib;xapobase.lib;winmm.lib;dsound.lib;d3dcompiler.lib;d3d11.lib;d3dx11.lib;d2d1.lib;dwrite.lib;d3dcsx.lib;advapi32.lib</AdditionalDependencies>
+      <Version>4.0.10.43</Version>
+      <AdditionalLibraryDirectories>$(OutDir);$(DXSDK_DIR)Lib\x64;$(OutDir)..\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d3d9.dll;d3dx9_43.dll;d3dx10_43.dll;d3dx11_43.dll;d3dcompiler_43.dll;d3dcsx_43.dll;d3d10.dll;d3d10_1.dll;d3d11.dll;d2d1.dll;dwrite.dll;dxgi.dll;dinput8.dll;x3daudio1_7.dll;xinput1_3.dll;dsound.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <KeyFile>D:\slimdxKey.snk</KeyFile>
+      <DelaySign>false</DelaySign>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>sn -R $(TargetPath) D:\slimdxKey.snk</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\ComObject.cpp" />
+    <ClCompile Include="..\..\source\CompilationException.cpp" />
+    <ClCompile Include="..\..\source\Configuration.cpp" />
+    <ClCompile Include="..\..\source\ObjectTable.cpp" />
+    <ClCompile Include="..\..\source\Result.cpp" />
+    <ClCompile Include="..\..\source\SlimDXException.cpp" />
+    <ClCompile Include="..\..\source\Utilities.cpp" />
+    <ClCompile Include="..\..\source\DataBox.cpp" />
+    <ClCompile Include="..\..\source\DataRectangle.cpp" />
+    <ClCompile Include="..\..\source\DataStream.cpp" />
+    <ClCompile Include="..\..\source\Performance.cpp" />
+    <ClCompile Include="..\..\source\directinput\DirectInput.cpp" />
+    <ClCompile Include="..\..\source\directinput\ResultCodeDI.cpp" />
+    <ClCompile Include="..\..\source\directinput\CallbacksDI.cpp" />
+    <ClCompile Include="..\..\source\directinput\CustomDevice.cpp" />
+    <ClCompile Include="..\..\source\directinput\DeviceDI.cpp" />
+    <ClCompile Include="..\..\source\directinput\Joystick.cpp" />
+    <ClCompile Include="..\..\source\directinput\Keyboard.cpp" />
+    <ClCompile Include="..\..\source\directinput\Mouse.cpp" />
+    <ClCompile Include="..\..\source\directinput\DirectInputException.cpp" />
+    <ClCompile Include="..\..\source\directinput\DirectInputNotFoundException.cpp" />
+    <ClCompile Include="..\..\source\directinput\DeviceProperties.cpp" />
+    <ClCompile Include="..\..\source\directinput\InputRange.cpp" />
+    <ClCompile Include="..\..\source\directinput\ObjectProperties.cpp" />
+    <ClCompile Include="..\..\source\directinput\JoystickState.cpp" />
+    <ClCompile Include="..\..\source\directinput\KeyboardState.cpp" />
+    <ClCompile Include="..\..\source\directinput\MouseState.cpp" />
+    <ClCompile Include="..\..\source\directinput\DeviceConstantConverter.cpp" />
+    <ClCompile Include="..\..\source\directinput\CapabilitiesDI.cpp" />
+    <ClCompile Include="..\..\source\directinput\DeviceImage.cpp" />
+    <ClCompile Include="..\..\source\directinput\DeviceImageHeader.cpp" />
+    <ClCompile Include="..\..\source\directinput\DeviceInstance.cpp" />
+    <ClCompile Include="..\..\source\directinput\DeviceObjectInstance.cpp" />
+    <ClCompile Include="..\..\source\directinput\ObjectData.cpp" />
+    <ClCompile Include="..\..\source\directinput\ActionMappingConstants.cpp" />
+    <ClCompile Include="..\..\source\directinput\EffectDI.cpp" />
+    <ClCompile Include="..\..\source\directinput\EffectFile.cpp" />
+    <ClCompile Include="..\..\source\directinput\EffectInfo.cpp" />
+    <ClCompile Include="..\..\source\directinput\EffectParameters.cpp" />
+    <ClCompile Include="..\..\source\directinput\Envelope.cpp" />
+    <ClCompile Include="..\..\source\directinput\TypeSpecificParameters.cpp" />
+    <ClCompile Include="..\..\source\directinput\ConstantForce.cpp" />
+    <ClCompile Include="..\..\source\directinput\CustomForce.cpp" />
+    <ClCompile Include="..\..\source\directinput\PeriodicForce.cpp" />
+    <ClCompile Include="..\..\source\directinput\RampForce.cpp" />
+    <ClCompile Include="..\..\source\directinput\Condition.cpp" />
+    <ClCompile Include="..\..\source\directinput\ConditionSet.cpp" />
+    <ClCompile Include="..\..\source\math\BoundingBox.cpp" />
+    <ClCompile Include="..\..\source\math\BoundingSphere.cpp" />
+    <ClCompile Include="..\..\source\math\Color3.cpp" />
+    <ClCompile Include="..\..\source\math\Color4.cpp" />
+    <ClCompile Include="..\..\source\math\Vector2.cpp" />
+    <ClCompile Include="..\..\source\math\Vector3.cpp" />
+    <ClCompile Include="..\..\source\math\Vector4.cpp" />
+    <ClCompile Include="..\..\source\math\Matrix.cpp" />
+    <ClCompile Include="..\..\source\math\Quaternion.cpp" />
+    <ClCompile Include="..\..\source\math\Ray.cpp" />
+    <ClCompile Include="..\..\source\math\Plane.cpp" />
+    <ClCompile Include="..\..\source\math\Rational.cpp" />
+    <ClCompile Include="..\..\source\math\Half.cpp" />
+    <ClCompile Include="..\..\source\math\Half2.cpp" />
+    <ClCompile Include="..\..\source\math\Half3.cpp" />
+    <ClCompile Include="..\..\source\math\Half4.cpp" />
+    <ClCompile Include="..\..\source\design\BoundingBoxConverter.cpp" />
+    <ClCompile Include="..\..\source\design\BoundingSphereConverter.cpp" />
+    <ClCompile Include="..\..\source\design\Color3Converter.cpp" />
+    <ClCompile Include="..\..\source\design\Color4Converter.cpp" />
+    <ClCompile Include="..\..\source\design\FieldPropertyDescriptor.cpp" />
+    <ClCompile Include="..\..\source\design\Half2Converter.cpp" />
+    <ClCompile Include="..\..\source\design\Half3Converter.cpp" />
+    <ClCompile Include="..\..\source\design\Half4Converter.cpp" />
+    <ClCompile Include="..\..\source\design\HalfConverter.cpp" />
+    <ClCompile Include="..\..\source\design\MatrixConverter.cpp" />
+    <ClCompile Include="..\..\source\design\PlaneConverter.cpp" />
+    <ClCompile Include="..\..\source\design\QuaternionConverter.cpp" />
+    <ClCompile Include="..\..\source\design\RationalConverter.cpp" />
+    <ClCompile Include="..\..\source\design\RayConverter.cpp" />
+    <ClCompile Include="..\..\source\design\Vector2Converter.cpp" />
+    <ClCompile Include="..\..\source\design\Vector3Converter.cpp" />
+    <ClCompile Include="..\..\source\design\Vector4Converter.cpp" />
+    <ClCompile Include="..\..\source\multimedia\WaveFormat.cpp" />
+    <ClCompile Include="..\..\source\multimedia\WaveFormatExtensible.cpp" />
+    <ClCompile Include="..\..\source\multimedia\WaveStream.cpp" />
+    <ClCompile Include="..\..\source\AssemblyInfo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Public|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Public|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\auto_array.h" />
+    <ClInclude Include="..\..\source\CollectionShim.h" />
+    <ClInclude Include="..\..\source\ComObject.h" />
+    <ClInclude Include="..\..\source\ComObjectMacros.h" />
+    <ClInclude Include="..\..\source\CompilationException.h" />
+    <ClInclude Include="..\..\source\Configuration.h" />
+    <ClInclude Include="..\..\source\Enums.h" />
+    <ClInclude Include="..\..\source\InternalHelpers.h" />
+    <ClInclude Include="..\..\source\ObjectTable.h" />
+    <ClInclude Include="..\..\source\Result.h" />
+    <ClInclude Include="..\..\source\SlimDXException.h" />
+    <ClInclude Include="..\..\source\stack_array.h" />
+    <ClInclude Include="..\..\source\Utilities.h" />
+    <ClInclude Include="..\..\source\VersionConfig.h" />
+    <ClInclude Include="..\..\source\DataBox.h" />
+    <ClInclude Include="..\..\source\DataRectangle.h" />
+    <ClInclude Include="..\..\source\DataStream.h" />
+    <ClInclude Include="..\..\source\Performance.h" />
+    <ClInclude Include="..\..\source\directinput\DirectInput.h" />
+    <ClInclude Include="..\..\source\directinput\Enums.h" />
+    <ClInclude Include="..\..\source\directinput\Guids.h" />
+    <ClInclude Include="..\..\source\directinput\ResultCodeDI.h" />
+    <ClInclude Include="..\..\source\directinput\CallbacksDI.h" />
+    <ClInclude Include="..\..\source\directinput\CustomDevice.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceDI.h" />
+    <ClInclude Include="..\..\source\directinput\Joystick.h" />
+    <ClInclude Include="..\..\source\directinput\Keyboard.h" />
+    <ClInclude Include="..\..\source\directinput\Mouse.h" />
+    <ClInclude Include="..\..\source\directinput\DirectInputException.h" />
+    <ClInclude Include="..\..\source\directinput\DirectInputNotFoundException.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceProperties.h" />
+    <ClInclude Include="..\..\source\directinput\InputRange.h" />
+    <ClInclude Include="..\..\source\directinput\ObjectProperties.h" />
+    <ClInclude Include="..\..\source\directinput\DataFormatAttribute.h" />
+    <ClInclude Include="..\..\source\directinput\DataObjectAttribute.h" />
+    <ClInclude Include="..\..\source\directinput\JoystickState.h" />
+    <ClInclude Include="..\..\source\directinput\KeyboardState.h" />
+    <ClInclude Include="..\..\source\directinput\MouseState.h" />
+    <ClInclude Include="..\..\source\directinput\AnyControl.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceConstantConverter.h" />
+    <ClInclude Include="..\..\source\directinput\JoystickObjects.h" />
+    <ClInclude Include="..\..\source\directinput\CapabilitiesDI.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceImage.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceImageHeader.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceInstance.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceObjectInstance.h" />
+    <ClInclude Include="..\..\source\directinput\DeviceSubType.h" />
+    <ClInclude Include="..\..\source\directinput\ObjectData.h" />
+    <ClInclude Include="..\..\source\directinput\ActionGenres.h" />
+    <ClInclude Include="..\..\source\directinput\ArcadeGenres.h" />
+    <ClInclude Include="..\..\source\directinput\CADGenres.h" />
+    <ClInclude Include="..\..\source\directinput\ControlGenres.h" />
+    <ClInclude Include="..\..\source\directinput\DrivingGenres.h" />
+    <ClInclude Include="..\..\source\directinput\FlightGenres.h" />
+    <ClInclude Include="..\..\source\directinput\SportsGenres.h" />
+    <ClInclude Include="..\..\source\directinput\StrategyGenres.h" />
+    <ClInclude Include="..\..\source\directinput\EffectDI.h" />
+    <ClInclude Include="..\..\source\directinput\EffectFile.h" />
+    <ClInclude Include="..\..\source\directinput\EffectInfo.h" />
+    <ClInclude Include="..\..\source\directinput\EffectParameters.h" />
+    <ClInclude Include="..\..\source\directinput\Envelope.h" />
+    <ClInclude Include="..\..\source\directinput\TypeSpecificParameters.h" />
+    <ClInclude Include="..\..\source\directinput\ConstantForce.h" />
+    <ClInclude Include="..\..\source\directinput\CustomForce.h" />
+    <ClInclude Include="..\..\source\directinput\PeriodicForce.h" />
+    <ClInclude Include="..\..\source\directinput\RampForce.h" />
+    <ClInclude Include="..\..\source\directinput\Condition.h" />
+    <ClInclude Include="..\..\source\directinput\ConditionSet.h" />
+    <ClInclude Include="..\..\source\design\BoundingBoxConverter.h" />
+    <ClInclude Include="..\..\source\design\BoundingSphereConverter.h" />
+    <ClInclude Include="..\..\source\design\Color3Converter.h" />
+    <ClInclude Include="..\..\source\design\Color4Converter.h" />
+    <ClInclude Include="..\..\source\design\FieldPropertyDescriptor.h" />
+    <ClInclude Include="..\..\source\design\Half2Converter.h" />
+    <ClInclude Include="..\..\source\design\Half3Converter.h" />
+    <ClInclude Include="..\..\source\design\Half4Converter.h" />
+    <ClInclude Include="..\..\source\design\HalfConverter.h" />
+    <ClInclude Include="..\..\source\design\MatrixConverter.h" />
+    <ClInclude Include="..\..\source\design\PlaneConverter.h" />
+    <ClInclude Include="..\..\source\design\QuaternionConverter.h" />
+    <ClInclude Include="..\..\source\design\RationalConverter.h" />
+    <ClInclude Include="..\..\source\design\RayConverter.h" />
+    <ClInclude Include="..\..\source\design\Vector2Converter.h" />
+    <ClInclude Include="..\..\source\design\Vector3Converter.h" />
+    <ClInclude Include="..\..\source\design\Vector4Converter.h" />
+    <ClInclude Include="..\..\source\multimedia\Enums.h" />
+    <ClInclude Include="..\..\source\multimedia\WaveFormat.h" />
+    <ClInclude Include="..\..\source\multimedia\WaveFormatExtensible.h" />
+    <ClInclude Include="..\..\source\multimedia\WaveStream.h" />
+    <ClInclude Include="..\..\source\stdafx.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

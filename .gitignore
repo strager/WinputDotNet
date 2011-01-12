@@ -4,3 +4,5 @@
 *.suo
 _*
 *.Cache
+*.opensdf
+*.sdf
