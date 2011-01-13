@@ -171,11 +171,11 @@ namespace WinputDotNet.Providers {
 
         static DirectInputSequence() {
             CommonKeys = (
-                "GRAVE,TAB,CAPSLOCK,NUMLOCK,PAUSE,SCROLL,PRINTSCREEN,SYSRQ,ESCAPE," +
-                "NUMPADSLASH,NUMPADSTAR,NUMPADMINUS,ADD,DECIMAL,INSERT," +
+                "GRAVE,TAB,CAPSLOCK,NUMLOCK,NUMBERLOCK,PAUSE,SCROLL,PRINTSCREEN,SYSRQ," +
                 "HOME,PAGEUP,PAGEDOWN,END,DELETE,BACKSPACE,RIGHTWINDOWS," +
                 "LEFTWINDOWS,MINUS,EQUALS,LEFTBRACKET,RIGHTBRACKET,SEMICOLON," +
-                "APOSTROPHE,COMMA,PERIOD,SLASH,BACKSLASH,ENTER"
+                "APOSTROPHE,COMMA,PERIOD,SLASH,BACKSLASH,ENTER,ESCAPE," +
+                "LEFTARROW,RIGHTARROW,UPARROW,DOWNARROW,ADD,DECIMAL,INSERT"
             ).Split(',');
 
             const RegexOptions opts = RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline;
@@ -183,7 +183,8 @@ namespace WinputDotNet.Providers {
             SpecialKeyExpressions = new[] {
                 new Regex(@"^[A-Z]$", opts),                            // Letter keys (A, B, X, Y)
                 new Regex(@"^F[0-9]+$", opts),                          // Function keys (F#)
-                new Regex(@"^NUMPAD[0-9]$", opts),                      // Numpad numbers (NUMPAD#)
+                new Regex(@"^NUM(BER)?PAD[0-9]$", opts),                // Numpad numbers (NUMPAD#)
+                new Regex(@"^NUM(BER)?PAD[A-Z]+", opts),                // Numpad buttons (e.g. NUMPADENTER)
                 new Regex(@"^((Left|Right)?Shift\+)?D[0-9]+$", opts),   // Number keys (optionally with shift) (D#)
             };
         }
@@ -202,12 +203,69 @@ namespace WinputDotNet.Providers {
         private const CooperativeLevel BackgroundFlags = CooperativeLevel.Background | CooperativeLevel.Nonexclusive;
         private const CooperativeLevel ForegroundFlags = CooperativeLevel.Foreground | CooperativeLevel.Exclusive;
 
+        private static readonly IDictionary<string, Key> BackwardCompatibilityKeyMapping;
+
         public event EventHandler<CommandStateChangedEventArgs> CommandStateChanged;
 
         public string Name {
             get {
                 return "DirectInput";
             }
+        }
+
+        static DirectInputProvider() {
+            // Backward compatibility;
+            // Microsoft's managed DirectInput wrapper used to be used.
+            // SlimDX has slightly different names for some of the enum values,
+            // so we provide a mapping in case an old enum name is parsed.
+
+            var unknown = Key.Unknown;
+
+            BackwardCompatibilityKeyMapping = new Dictionary<string, Key>(StringComparer.InvariantCultureIgnoreCase) {
+                { "Add", unknown },
+                { "Apps", Key.Applications },
+                { "Back", unknown },
+                { "Capital", unknown },
+                { "Circumflex", unknown },
+                { "Decimal", unknown },
+                { "Divide", unknown },
+                { "Down", Key.DownArrow },
+                { "Left", Key.LeftArrow },
+                { "LeftMenu", Key.LeftAlt },
+                { "LeftWindows", Key.LeftWindowsKey },
+                { "Multiply", unknown },
+                { "Next", unknown },
+                { "Numlock", Key.NumberLock },
+                { "NumPad0", Key.NumberPad0 },
+                { "NumPad1", Key.NumberPad1 },
+                { "NumPad2", Key.NumberPad2 },
+                { "NumPad3", Key.NumberPad3 },
+                { "NumPad4", Key.NumberPad4 },
+                { "NumPad5", Key.NumberPad5 },
+                { "NumPad6", Key.NumberPad6 },
+                { "NumPad7", Key.NumberPad7 },
+                { "NumPad8", Key.NumberPad8 },
+                { "NumPad9", Key.NumberPad9 },
+                { "NumPadComma", Key.NumberPadComma },
+                { "NumPadEnter", Key.NumberPadEnter },
+                { "NumPadEquals", Key.NumberPadEquals },
+                { "NumPadMinus", Key.NumberPadMinus },
+                { "NumPadPeriod", Key.NumberPadPeriod },
+                { "NumPadPlus", Key.NumberPadPlus },
+                { "NumPadSlash", Key.NumberPadSlash },
+                { "NumPadStar", Key.NumberPadStar },
+                { "OEM102", Key.Oem102 },
+                { "PrevTrack", Key.PreviousTrack },
+                { "Prior", unknown },
+                { "Right", Key.RightArrow },
+                { "RightMenu", Key.RightAlt },
+                { "RightWindows", Key.RightWindowsKey },
+                { "Scroll", Key.ScrollLock },
+                { "SemiColon", Key.Semicolon },
+                { "Subtract", unknown },
+                { "SysRq", Key.PrintScreen },
+                { "Up", Key.UpArrow },
+            };
         }
 
         public void Attach() {
@@ -371,16 +429,10 @@ namespace WinputDotNet.Providers {
         }
 
         private static Key GetKeyFromName(string keyName) {
-            // Backwards compatibility
-            switch (keyName.ToUpperInvariant()) {
-                case "SYSRQ":
-                    return Key.PrintScreen;
+            Key compatibleKey;
 
-                case "LEFTMENU":
-                    return Key.LeftAlt;
-
-                case "RIGHTMENU":
-                    return Key.RightAlt;
+            if (BackwardCompatibilityKeyMapping.TryGetValue(keyName, out compatibleKey)) {
+                return compatibleKey;
             }
 
             return (Key) Enum.Parse(typeof(Key), keyName, true);
